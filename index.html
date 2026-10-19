@@ -153,10 +153,30 @@
     </section>
 
     <section class="tool">
-      <h2>🎓 Study Helper</h2>
-      <p>Choose Study Revision Notes above to create a
-      simple revision outline from your topic.</p>
-    </section>
+  <h2>🎓 Study Helper</h2>
+  <p>Enter a study topic to generate a quick revision summary:</p>
+  <input type="text" id="studyTopic" placeholder="e.g., Photosynthesis in plants" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+  <br>
+  <button onclick="generateStudyNotes()" style="padding: 8px 16px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Generate Revision Notes</button>
+  <div id="studyResult" style="margin-top: 15px; font-weight: bold; background: #f9f9f9; padding: 10px; border-radius: 4px;"></div>
+
+  <script>
+    function generateStudyNotes() {
+      const topic = document.getElementById('studyTopic').value.trim();
+      const resultDiv = document.getElementById('studyResult');
+      
+      if (!topic) {
+        resultDiv.innerHTML = "Please enter a topic first, buddy!";
+        return;
+      }
+
+      resultDiv.innerHTML = `📚 <strong>Revision Notes for "${topic}":</strong><br>` +
+                            `1. Core concept: ${topic} involves essential principles and key mechanisms.<br>` +
+                            `2. Key significance: Understanding this helps build a strong foundation.<br>` +
+                            `3. Quick takeaway: Review main definitions and practice sample questions!`;
+    }
+  </script>
+</section>
 
     <section class="tool">
       <h2>🚀 More tools coming soon</h2>
