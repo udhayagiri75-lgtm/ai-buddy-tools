@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Buddy Tools</title>
+  <meta name="description" content="Free writing and study tools for students and creators.">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f6ff;
+      color: #20213a;
+    }
+
+    header {
+      background: #17182f;
+      color: white;
+      padding: 22px 7%;
+    }
+
+    header h2 { margin: 0; }
+
+    .hero {
+      text-align: center;
+      padding: 55px 20px 35px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 6vw, 48px);
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #65677c;
+      line-height: 1.6;
+    }
+
+    main {
+      width: min(680px, 92%);
+      margin: 0 auto 50px;
+    }
+
+    .tool {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      margin: 18px 0;
+      box-shadow: 0 5px 24px #2222440c;
+    }
+
+    label {
+      display: block;
+      margin: 16px 0 8px;
+      font-weight: bold;
+    }
+
+    select, textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d9daeb;
+      border-radius: 10px;
+      font: inherit;
+      background: white;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      background: #6955e8;
+      color: white;
+      padding: 13px 18px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover { background: #5140c7; }
+
+    .full { width: 100%; margin-top: 15px; }
+
+    #result {
+      white-space: pre-wrap;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+      margin-top: 18px;
+    }
+
+    .note {
+      color: #77798c;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #77798c;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h2>✨ AI Buddy Tools</h2>
+  </header>
+
+  <section class="hero">
+    <h1>Your everyday AI buddy.</h1>
+    <p>Simple tools for writing, creativity and studying.</p>
+  </section>
+
+  <main>
+    <section class="tool">
+      <h2>✍️ Text Idea Generator</h2>
+      <p>Create a starting draft for your next idea.</p>
+
+      <label for="kind">Choose a tool</label>
+      <select id="kind">
+        <option value="caption">Social media caption</option>
+        <option value="study">Study revision notes</option>
+        <option value="video">Video content idea</option>
+        <option value="bio">Personal bio</option>
+      </select>
+
+      <label for="topic">What do you need?</label>
+      <textarea id="topic"
+        placeholder="Example: A motivational post for college students"></textarea>
+
+      <button class="full" onclick="generate()">
+        Generate my draft
+      </button>
+
+      <div id="result" aria-live="polite"></div>
+      <button id="copy" onclick="copyResult()" hidden>
+        Copy result
+      </button>
+
+      <p class="note">
+        This starter version uses templates in your browser.
+        It does not connect to an AI model yet.
+      </p>
+    </section>
+
+    <section class="tool">
+      <h2>🎓 Study Helper</h2>
+      <p>Choose Study Revision Notes above to create a
+      simple revision outline from your topic.</p>
+    </section>
+
+    <section class="tool">
+      <h2>🚀 More tools coming soon</h2>
+      <p>Resume writer, email helper and more useful tools.</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 AI Buddy Tools · Built to help you create more.
+  </footer>
+
+  <script>
+    function generate() {
+      const kind = document.getElementById("kind").value;
+      const topic = document.getElementById("topic").value.trim();
+      const result = document.getElementById("result");
+      const copy = document.getElementById("copy");
+
+      if (!topic) {
+        result.textContent = "Please enter a topic first.";
+        copy.hidden = true;
+        return;
+      }
+
+      const drafts = {
+        caption:
+          "✨ A little inspiration for today!\n\n" +
+          topic + "\n\nKeep learning, keep growing, and keep moving forward. 💜\n\n#Motivation #DailyInspiration",
+
+        study:
+          "STUDY REVISION OUTLINE\n\nTopic: " + topic +
+          "\n\n1. Definition and introduction\n" +
+          "2. Main concepts to learn\n" +
+          "3. Important terms and examples\n" +
+          "4. Key points to revise\n" +
+          "5. Questions to practise\n\n" +
+          "Note: Fill in these sections using your textbook or class notes.",
+
+        video:
+          "VIDEO CONTENT IDEA\n\nTopic: " + topic +
+          "\n\n1. Hook: Start with an interesting question.\n" +
+          "2. Introduction: Explain the topic briefly.\n" +
+          "3. Main content: Share three useful points.\n" +
+          "4. Ending: Give viewers one takeaway.\n" +
+          "5. Call to action: Invite viewers to share their thoughts.",
+
+        bio:
+          "PERSONAL BIO DRAFT\n\n" +
+          "Hi! I'm someone interested in " + topic +
+          ". I enjoy learning, exploring new ideas, and improving my skills.\n\n" +
+          "I'm always looking for opportunities to grow and connect with others."
+      };
+
+      result.textContent = drafts[kind];
+      copy.hidden = false;
+    }
+
+    async function copyResult() {
+      const text = document.getElementById("result").textContent;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById("copy").textContent = "Copied!";
+      } catch {
+        document.getElementById("result").textContent +=
+          "\n\nSelect the text above and copy it manually.";
+      }
+    }
+  </script>
+</body>
+</html>
