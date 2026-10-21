@@ -169,11 +169,21 @@
         resultDiv.innerHTML = "Please enter a topic first, buddy!";
         return;
       }
-
-      resultDiv.innerHTML = `📚 <strong>Revision Notes for "${topic}":</strong><br>` +
-                            `1. Core concept: ${topic} involves essential principles and key mechanisms.<br>` +
-                            `2. Key significance: Understanding this helps build a strong foundation.<br>` +
-                            `3. Quick takeaway: Review main definitions and practice sample questions!`;
+resultDiv.innerHTML =
+  `<h3>📚 Revision Notes: ${topic}</h3>` +
+  `<h4>1. Introduction</h4>` +
+  `<p>${topic} is an important topic. Start by learning its definition and basic concepts.</p>` +
+  `<h4>2. Important Points</h4>` +
+  `<ul>` +
+  `<li>Learn the definition of ${topic}.</li>` +
+  `<li>Understand its main concepts and features.</li>` +
+  `<li>Study examples and real-life applications.</li>` +
+  `</ul>` +
+  `<h4>3. Quick Revision Questions</h4>` +
+  `<p><strong>Q1.</strong> What is ${topic}?</p>` +
+  `<p><strong>Q2.</strong> What are its main features?</p>` +
+  `<p><strong>Q3.</strong> Give one example of ${topic}.</p>` +
+  `<p>💡 <strong>Study tip:</strong> Practise answering these questions using your textbook.</p>`;
     }
   </script>
 </section>
@@ -207,13 +217,28 @@
           topic + "\n\nKeep learning, keep growing, and keep moving forward. 💜\n\n#Motivation #DailyInspiration",
 
         study:
-          "STUDY REVISION OUTLINE\n\nTopic: " + topic +
-          "\n\n1. Definition and introduction\n" +
-          "2. Main concepts to learn\n" +
-          "3. Important terms and examples\n" +
-          "4. Key points to revise\n" +
-          "5. Questions to practise\n\n" +
-          "Note: Fill in these sections using your textbook or class notes.",
+          
+"📚 STUDY REVISION NOTES\n\n" +
+"Topic: " + topic + "\n\n" +
+"1. INTRODUCTION\n" +
+"Understand the meaning and basic concepts of " + topic + ".\n\n" +
+"2. IMPORTANT POINTS\n" +
+"• Learn the definition.\n" +
+"• Understand the main concepts.\n" +
+"• Identify important terms.\n" +
+"• Study examples and applications.\n\n" +
+"3. EXAMPLE\n" +
+"Write one example related to " + topic + " and explain it.\n\n" +
+"4. REVISION QUESTIONS\n" +
+"Q1. What is " + topic + "?\n" +
+"Answer: Write the definition in your own words.\n\n" +
+"Q2. What are its main concepts?\n" +
+"Answer: Explain three important points.\n\n" +
+"Q3. Give one example.\n" +
+"Answer: Write a relevant example.\n\n" +
+"5. STUDY TIP\n" +
+"Revise the definitions, important points, and examples.",
+
 
         video:
           "VIDEO CONTENT IDEA\n\nTopic: " + topic +
