@@ -216,28 +216,47 @@ resultDiv.innerHTML =
           "✨ A little inspiration for today!\n\n" +
           topic + "\n\nKeep learning, keep growing, and keep moving forward. 💜\n\n#Motivation #DailyInspiration",
 
-        study:
-          
-"📚 STUDY REVISION NOTES\n\n" +
-"Topic: " + topic + "\n\n" +
-"1. INTRODUCTION\n" +
-"Understand the meaning and basic concepts of " + topic + ".\n\n" +
-"2. IMPORTANT POINTS\n" +
-"• Learn the definition.\n" +
-"• Understand the main concepts.\n" +
-"• Identify important terms.\n" +
-"• Study examples and applications.\n\n" +
-"3. EXAMPLE\n" +
-"Write one example related to " + topic + " and explain it.\n\n" +
-"4. REVISION QUESTIONS\n" +
-"Q1. What is " + topic + "?\n" +
-"Answer: Write the definition in your own words.\n\n" +
-"Q2. What are its main concepts?\n" +
-"Answer: Explain three important points.\n\n" +
-"Q3. Give one example.\n" +
-"Answer: Write a relevant example.\n\n" +
-"5. STUDY TIP\n" +
-"Revise the definitions, important points, and examples.",
+       
+study:
+  "📚 STUDY REVISION NOTES\n\n" +
+  "Topic: " + topic + "\n\n" +
+  (topic.toLowerCase().includes("space") ?
+    "1. INTRODUCTION\n" +
+    "Space is the vast area beyond Earth's atmosphere. The universe contains galaxies, stars, planets, moons, gas, and dust.\n\n" +
+    "2. IMPORTANT POINTS\n" +
+    "• The universe contains billions of galaxies.\n" +
+    "• A galaxy is a huge collection of stars, gas, and dust.\n" +
+    "• The Solar System is part of the Milky Way galaxy.\n" +
+    "• Earth is a planet that revolves around the Sun.\n" +
+    "• Stars produce their own light; planets reflect light from stars.\n\n" +
+    "3. EXAMPLE\n" +
+    "The Milky Way is the galaxy containing our Solar System.\n\n" +
+    "4. REVISION QUESTIONS\n" +
+    "Q1. What is the universe?\n" +
+    "Answer: The universe includes all space, matter, and energy.\n\n" +
+    "Q2. What is a galaxy?\n" +
+    "Answer: A galaxy is a large collection of stars, gas, and dust.\n\n" +
+    "Q3. Which galaxy contains our Solar System?\n" +
+    "Answer: The Milky Way.\n\n" :
+    "1. INTRODUCTION\n" +
+    topic + " is a topic to understand by learning its meaning, key ideas, and applications.\n\n" +
+    "2. IMPORTANT POINTS\n" +
+    "• Learn the definition of " + topic + ".\n" +
+    "• Identify its main concepts and key terms.\n" +
+    "• Understand how it works and why it matters.\n" +
+    "• Review a real-world example from your textbook.\n\n" +
+    "3. EXAMPLE\n" +
+    "Write a textbook-based example of " + topic + " and explain it in your own words.\n\n" +
+    "4. REVISION QUESTIONS\n" +
+    "Q1. What is " + topic + "?\n" +
+    "Answer: Write its correct definition.\n\n" +
+    "Q2. What are its main features?\n" +
+    "Answer: Explain at least three key points.\n\n" +
+    "Q3. Give one example of " + topic + ".\n" +
+    "Answer: Use a relevant example from your lessons.\n\n"
+  ) +
+  "5. STUDY TIP\n" +
+  "Revise the key points and answer the questions without looking at your notes.",
 
 
         video:
