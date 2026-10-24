@@ -161,66 +161,52 @@
   <div id="studyResult" style="margin-top: 15px; font-weight: bold; background: #f9f9f9; padding: 10px; border-radius: 4px;"></div>
 
   <script>
-    function generateStudyNotes() {
-      const topic = document.getElementById('studyTopic').value.trim();
-      const resultDiv = document.getElementById('studyResult');
-      
-      if (!topic) {
-        resultDiv.innerHTML = "Please enter a topic first, buddy!";
-        return;
-      }
-const lowerTopic = topic.toLowerCase();
+    
+async function generateStudyNotes() {
+  const topic = document.getElementById("studyTopic").value.trim();
+  const resultDiv = document.getElementById("studyResult");
+  const button = document.querySelector(
+    'button[onclick="generateStudyNotes()"]'
+  );
 
-const topics = {
-  "photosynthesis": {
-    title: "Photosynthesis in Plants",
-    intro: "Photosynthesis is the process by which green plants use sunlight, water, and carbon dioxide to make food.",
-    points: [
-      "Chlorophyll absorbs sunlight.",
-      "Roots absorb water from the soil.",
-      "Leaves take in carbon dioxide.",
-      "Plants produce glucose and release oxygen."
-    ]
-  },
-  "solar system": {
-    title: "Solar System",
-    intro: "The solar system consists of the Sun and the objects that orbit it, including eight planets.",
-    points: [
-      "The Sun is at the centre of our solar system.",
-      "There are eight planets.",
-      "Earth is the third planet from the Sun.",
-      "Gravity keeps planets in orbit around the Sun."
-    ]
-  },
-  "deep learning": {
-    title: "Deep Learning",
-    intro: "Deep learning is a branch of machine learning that uses neural networks with multiple layers to learn patterns from data.",
-    points: [
-      "Neural networks contain interconnected artificial neurons.",
-      "Models learn patterns from training data.",
-      "Training adjusts weights to improve predictions.",
-      "Applications include image recognition and language processing."
-    ]
+  if (!topic) {
+    resultDiv.textContent = "Please enter a study topic first, buddy!";
+    return;
   }
-};
 
-const match = Object.keys(topics).find(key =>
-  lowerTopic.includes(key)
-);
+  button.disabled = true;
+  button.textContent = "Generating notes...";
+  resultDiv.textContent = "Buddy, AI is preparing your notes...";
 
-if (match) {
-  const note = topics[match];
+  try {
+    const response = await fetch(
+      "https://ai-buddy-tools.udhayagiri75.workers.dev/api/study",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ topic: topic })
+      }
+    );
 
-  resultDiv.innerHTML =
-    `<h3>📚 ${note.title}</h3>` +
-    `<h4>Introduction</h4><p>${note.intro}</p>` +
-    `<h4>Important Points</h4><ul>` +
-    note.points.map(point => `<li>${point}</li>`).join("") +
-    `</ul>`;
-} else {
-  resultDiv.textContent =
-    "Buddy, try these topics: Photosynthesis, Solar System, or Deep Learning.";
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Could not generate notes.");
+    }
+
+    resultDiv.textContent = data.notes;
+  } catch (error) {
+    console.error(error);
+    resultDiv.textContent =
+      "Sorry buddy, AI notes could not be generated. Please try again.";
+  } finally {
+    button.disabled = false;
+    button.textContent = "Generate Revision Notes";
+  }
 }
+
       
     }
   </script>
