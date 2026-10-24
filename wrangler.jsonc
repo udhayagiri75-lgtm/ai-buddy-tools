@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ai-buddy-tools",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-24",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS"
+  }
+}
