@@ -169,21 +169,59 @@
         resultDiv.innerHTML = "Please enter a topic first, buddy!";
         return;
       }
-resultDiv.innerHTML =
-  `<h3>📚 Revision Notes: ${topic}</h3>` +
-  `<h4>1. Introduction</h4>` +
-  `<p>${topic} is an important topic. Start by learning its definition and basic concepts.</p>` +
-  `<h4>2. Important Points</h4>` +
-  `<ul>` +
-  `<li>Learn the definition of ${topic}.</li>` +
-  `<li>Understand its main concepts and features.</li>` +
-  `<li>Study examples and real-life applications.</li>` +
-  `</ul>` +
-  `<h4>3. Quick Revision Questions</h4>` +
-  `<p><strong>Q1.</strong> What is ${topic}?</p>` +
-  `<p><strong>Q2.</strong> What are its main features?</p>` +
-  `<p><strong>Q3.</strong> Give one example of ${topic}.</p>` +
-  `<p>💡 <strong>Study tip:</strong> Practise answering these questions using your textbook.</p>`;
+const lowerTopic = topic.toLowerCase();
+
+const topics = {
+  "photosynthesis": {
+    title: "Photosynthesis in Plants",
+    intro: "Photosynthesis is the process by which green plants use sunlight, water, and carbon dioxide to make food.",
+    points: [
+      "Chlorophyll absorbs sunlight.",
+      "Roots absorb water from the soil.",
+      "Leaves take in carbon dioxide.",
+      "Plants produce glucose and release oxygen."
+    ]
+  },
+  "solar system": {
+    title: "Solar System",
+    intro: "The solar system consists of the Sun and the objects that orbit it, including eight planets.",
+    points: [
+      "The Sun is at the centre of our solar system.",
+      "There are eight planets.",
+      "Earth is the third planet from the Sun.",
+      "Gravity keeps planets in orbit around the Sun."
+    ]
+  },
+  "deep learning": {
+    title: "Deep Learning",
+    intro: "Deep learning is a branch of machine learning that uses neural networks with multiple layers to learn patterns from data.",
+    points: [
+      "Neural networks contain interconnected artificial neurons.",
+      "Models learn patterns from training data.",
+      "Training adjusts weights to improve predictions.",
+      "Applications include image recognition and language processing."
+    ]
+  }
+};
+
+const match = Object.keys(topics).find(key =>
+  lowerTopic.includes(key)
+);
+
+if (match) {
+  const note = topics[match];
+
+  resultDiv.innerHTML =
+    `<h3>📚 ${note.title}</h3>` +
+    `<h4>Introduction</h4><p>${note.intro}</p>` +
+    `<h4>Important Points</h4><ul>` +
+    note.points.map(point => `<li>${point}</li>`).join("") +
+    `</ul>`;
+} else {
+  resultDiv.textContent =
+    "Buddy, try these topics: Photosynthesis, Solar System, or Deep Learning.";
+}
+      
     }
   </script>
 </section>
